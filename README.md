@@ -1,2 +1,2 @@
 # jest-another-RPG
-10 | Object-Oriented Programming
+* 10 | Object-Oriented Programming
