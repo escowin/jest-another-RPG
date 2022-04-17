@@ -2,9 +2,10 @@ const { test, expect } = require('@jest/globals');
 const exp = require('constants');
 const Potion = require('../lib/Potion');
 
-test('creates health potion object', () => {
-    const potion = new Potion('health');
-
-    expect(potion.name).toBe('health');
+test('creates a random potion object', () => {
+    const potion = new Potion();
+  
+    expect(potion.name).toEqual(expect.any(String));
+    expect(potion.name.length).toBeGreaterThan(0);
     expect(potion.value).toEqual(expect.any(Number));
-});
+  });
