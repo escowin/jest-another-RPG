@@ -4,7 +4,7 @@ const Player = require('../lib/Player');
 // GitHub issue | want players to have a name and three number properties: health, strength, and agility. Write test that checks for the existence of those four things.
 
 test('creates a player object', () => {
-    const Player = new Player('dave');
+    const player = new Player('dave');
 
     expect(player.name).toBe('dave');
     expect(player.health).toEqual(expect.any(Number));
