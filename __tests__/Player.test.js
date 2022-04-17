@@ -1,3 +1,5 @@
+const { test, expect } = require('@jest/globals');
+const exp = require('constants');
 const Player = require('../lib/Player.js');
 const Potion = require('../lib/Potion.js');
 
@@ -31,4 +33,11 @@ test('gets inventory from player or returns false', () => {
   player.inventory = [];
 
   expect(player.getInventory()).toEqual(false);
+});
+
+// get health
+test("get player health value", () => {
+    const player = new Player('dave');
+    
+    expect(player.getHealth()).toEqual(expect.stringContaining(player.health.toString()));
 });
