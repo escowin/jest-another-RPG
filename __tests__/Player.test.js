@@ -1,5 +1,7 @@
-const { test, expect } = require('@jest/globals');
 const Player = require('../lib/Player');
+const Potion = require('../lib/Potion');
+jest.mock('../lib/Potion');
+console.log(new Potion());
 
 // GitHub issue | want players to have a name and three number properties: health, strength, and agility. Write test that checks for the existence of those four things.
 
