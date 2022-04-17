@@ -1,25 +1,16 @@
 {
-  "name": "jest-another-rpg",
+  "name": "rpg",
   "version": "1.0.0",
-  "description": "* 10 | Object-Oriented Programming",
+  "description": "",
   "main": "app.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/escowin/jest-another-RPG.git"
-  },
-  "author": "escowin",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/escowin/jest-another-RPG/issues"
-  },
-  "homepage": "https://github.com/escowin/jest-another-RPG#readme",
-  "devDependencies": {
-    "jest": "^27.5.1"
+  "dependencies": {
+    "inquirer": "^7.0.3",
+    "jest": "^24.9.0"
   }
 }
