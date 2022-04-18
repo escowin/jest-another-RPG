@@ -68,3 +68,12 @@ test("get player attack value", () => {
     expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
     expect(player.getAttackValue()).toBeLessThanOrEqual(15);
 });
+
+test("add potion to inventory", () => {
+    const player = new Player('jon');
+    const oldCount = player.inventory.length;
+
+    player.addPotion(new Potion());
+
+    expect(player.inventory.length).toBeGreaterThan(oldCount);
+});
