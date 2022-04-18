@@ -1,59 +1,59 @@
-const { test, expect } = require('@jest/globals');
-const Enemy = require('../lib/Enemy');
-const Potion = require('../lib/Potion');
+const Enemy = require('../lib/Enemy.js');
+const Potion = require('../lib/Potion.js');
 
-jest.mock('../lib/Potion');
+jest.mock('../lib/Potion.js');
 
-test('create enemy object', () => {
-    const enemy = new Enemy('goblin', 'sword');
+test('creates an enemy object', () => {
+  const enemy = new Enemy('goblin', 'sword');
 
-    expect(enemy.name).toBe('goblin');
-    expect(enemy.weapon).toBe('sword');
-    expect(enemy.health).toEqual(expect.any(Number));
-    expect(enemy.strength).toEqual(expect.any(Number));
-    expect(enemy.agility).toEqual(expect.any(Number));
-    expect(enemy.potion).toEqual(expect.any(Object));
+  expect(enemy.name).toBe('goblin');
+  expect(enemy.weapon).toBe('sword');
+  expect(enemy.health).toEqual(expect.any(Number));
+  expect(enemy.strength).toEqual(expect.any(Number));
+  expect(enemy.agility).toEqual(expect.any(Number));
+  expect(enemy.potion).toEqual(expect.any(Object));
 });
 
-// HEALTH-RELATED
-test("get enemy health value", () => {
-    const enemy = new Enemy('dave');
-    
-    expect(enemy.getHealth()).toEqual(expect.stringContaining(enemy.health.toString()));
+test("gets enemy's health value", () => {
+  const enemy = new Enemy('goblin', 'sword');
+
+  expect(enemy.getHealth()).toEqual(expect.stringContaining(enemy.health.toString()));
+});
+
+test('gets a description of the enemy', () => {
+  const enemy = new Enemy('goblin', 'sword');
+
+  expect(enemy.getDescription()).toEqual(expect.stringContaining('goblin'));
+  expect(enemy.getDescription()).toEqual(expect.stringContaining('sword'));
 });
 
 test('checks if enemy is alive or not', () => {
-    const enemy = new Enemy('dave');
+  const enemy = new Enemy('goblin', 'sword');
 
-    expect(enemy.isAlive()).toBeTruthy();
-    enemy.health = 0;
-    expect(enemy.isAlive()).toBeFalsy();
+  expect(enemy.isAlive()).toBeTruthy();
+
+  enemy.health = 0;
+
+  expect(enemy.isAlive()).toBeFalsy();
 });
 
-test("subtracts enemy health", () => {
-    const enemy = new Enemy('don');
-    const oldHealth = enemy.health;
+test("gets enemy's attack value", () => {
+  const enemy = new Enemy('goblin', 'sword');
+  enemy.strength = 10;
 
-    enemy.reduceHealth(5);
-    expect(enemy.health).toBe(oldHealth - 5);
-
-    enemy.reduceHealth(99999);
-    expect(enemy.health).toBe(0);
+  expect(enemy.getAttackValue()).toBeGreaterThanOrEqual(5);
+  expect(enemy.getAttackValue()).toBeLessThanOrEqual(15);
 });
 
-// ATTACK-RELATED
-test("get enemy attack value", () => {
-    const enemy = new Enemy('sam');
-    enemy.strength = 10;
+test("subtracts from enemy's health", () => {
+  const enemy = new Enemy('goblin', 'sword');
+  const oldHealth = enemy.health;
 
-    expect(enemy.getAttackValue()).toBeGreaterThanOrEqual(5);
-    expect(enemy.getAttackValue()).toBeLessThanOrEqual(15);
-});
+  enemy.reduceHealth(5);
 
-// DESCRIPTION
-test("get enemy description", () => {
-    const enemy = new Enemy('goblin', 'sword');
+  expect(enemy.health).toBe(oldHealth - 5);
 
-    expect(enemy.getDescription()).toEqual(expect.stringContaining('goblin'));
-    expect(enemy.getDescription()).toEqual(expect.stringContaining('sword'));
+  enemy.reduceHealth(99999);
+
+  expect(enemy.health).toBe(0);
 });
