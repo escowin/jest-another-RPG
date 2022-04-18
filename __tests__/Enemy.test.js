@@ -13,3 +13,38 @@ test('create enemy object', () => {
     expect(enemy.agility).toEqual(expect.any(Number));
     expect(enemy.potion).toEqual(expect.any(Object));
 });
+
+// HEALTH-RELATED
+test("get enemy health value", () => {
+    const enemy = new Enemy('dave');
+    
+    expect(enemy.getHealth()).toEqual(expect.stringContaining(enemy.health.toString()));
+});
+
+test('checks if enemy is alive or not', () => {
+    const enemy = new Enemy('dave');
+
+    expect(enemy.isAlive()).toBeTruthy();
+    enemy.health = 0;
+    expect(enemy.isAlive()).toBeFalsy();
+});
+
+test("subtracts enemy health", () => {
+    const enemy = new Enemy('don');
+    const oldHealth = enemy.health;
+
+    enemy.reduceHealth(5);
+    expect(enemy.health).toBe(oldHealth - 5);
+
+    enemy.reduceHealth(99999);
+    expect(enemy.health).toBe(0);
+});
+
+// ATTACK-RELATED
+test("get enemy attack value", () => {
+    const enemy = new Enemy('sam');
+    enemy.strength = 10;
+
+    expect(enemy.getAttackValue()).toBeGreaterThanOrEqual(5);
+    expect(enemy.getAttackValue()).toBeLessThanOrEqual(15);
+});
